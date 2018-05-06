@@ -267,6 +267,74 @@ userRoutes.post('/sharenote/:noteid/:id', function(req, res) {
   });
 });
 
+userRoutes.post('/addfolder/:id', function(req, res) {
+  const name = req.body.name;
+  const folderUpdate = {
+    name: name,
+    notes: [],
+  }
+  User.findByIdAndUpdate(req.params.id,
+    {$push: {folders: folderUpdate}},
+    {safe: true, upsert: true},
+    function(err, doc) {
+        if(err){
+        console.log(err);
+        }else{
+          console.log("folder added successfully");
+        }
+    }
+  );
+  return res.json({ success: true, message: 'FOLDER added successfully.', folderid: name });
+});
+
+userRoutes.post('/addnotestofolder/:id', function(req, res) {
+  const name = req.body.name;
+  const notes = req.body.notes;
+  Notes
+    .findOne({ name: notes })
+    .exec()
+    .then(function(note) {
+      if (note) {
+        return throwFailed(res, 'There is already Note with same name already existing.');
+      }
+      var noteAdded = new Notes({
+        name: notes,
+      });
+      
+      noteAdded.save(function(err, note) {
+        if (err) throw err;
+        const note1 = { name: notes, id: note._id }
+        User.update({ _id: req.params.id, 'folders.name': name },
+          {$push: {'folders.$.notes': note1 } },
+          {safe: true, upsert: true},
+          function(err, doc) {
+              if(err){
+              console.log(err);
+              }else{
+                console.log("folder added successfully");
+              }
+          }
+        );
+        return res.json({ success: true, message: 'FOLDER added successfully.', noteId: note._id });
+      });
+    });
+  });
+
+userRoutes.get('/getallfolders/:id', function(req, res) {
+  var userId = req.params.id;
+  // Function to check if the user has access to the Specific Note:
+
+  User
+  .findOne({ _id: userId })
+  .exec()
+  .then(function(user) {
+    setTimeout(function() {
+      res.json(user.folders)
+    }, config.delay);
+  }
+  );
+});
+
 
 
 module.exports = userRoutes;

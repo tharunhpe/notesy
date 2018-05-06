@@ -7,5 +7,6 @@ module.exports = mongoose.model('User', new Schema({
     email: String,
     password: String,
     admin: Boolean,
-    notes: Array
+    notes: Array,
+    folders: Array
 }));

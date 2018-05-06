@@ -49,6 +49,38 @@ export function addNote(name) {
   }
 }
 
+export function addNoteToFolder(fileName, folder) {
+  return (dispatch) => {
+      request
+        .post(Config.API_DOMAIN + 'api/addnotestofolder/' + localStorage.getItem('userId'))
+        .set('x-access-token', localStorage.getItem('token'))
+        .send({
+          name: folder,
+          notes: fileName,
+        })
+        .end((error, response) => {
+          // dispatch(userUpdated(response.body));
+          appHistory.push(`/user/${response.body.noteId}`);
+          return NotificationActions.show('Note added successfully')(dispatch);
+        });
+  }
+}
+
+export function addFolder(name) {
+  return (dispatch) => {
+      request
+        .post(Config.API_DOMAIN + 'api/addfolder/' + localStorage.getItem('userId'))
+        .set('x-access-token', localStorage.getItem('token'))
+        .send({
+          name: name,
+        })
+        .end((error, response) => {
+          // dispatch(userUpdated(response.body));
+          return NotificationActions.show('Folder added successfully')(dispatch);
+        });
+  }
+}
+
 export function userDataUpdated(user) {
   return (dispatch) => {
     dispatch({

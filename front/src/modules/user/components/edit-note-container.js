@@ -50,6 +50,7 @@ class EditNoteContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     this.setState({ 
       content: nextProps.note.content,
       title: nextProps.note.heading,

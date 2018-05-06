@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 import LoginContainer from '../modules/login/components/login-container'
 import UserContainer from '../modules/user/components/user-container'
 import EditNoteContainer from '../modules/user/components/edit-note-container'
+import FolderContainer from '../modules/user/components/folder-container'
 import DashboardContainer from '../modules/dashboard/components/dashboard-container'
 import RegisterContainer from '../modules/register/components/register-container'
 import { RouteHandler } from 'react-router'
@@ -18,6 +19,10 @@ export default (
        <Route
         path='user/:id'
         component={EditNoteContainer}
+       />
+       <Route
+        path='user/folder/:name'
+        component={FolderContainer}
        />
      </Route>
   </Route>

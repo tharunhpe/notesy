@@ -7,7 +7,7 @@
     "watch": "webpack  --progress --colors --watch --config ./build.config.js",
     "build": "webpack --config ./build.config.js"
   },
-  "author": "Krzysztof Sopa <krzysztof.sopa@gmail.com>",
+  "author": "Tharun Kariveda",
   "license": "MIT",
   "private": true,
   "dependencies": {
