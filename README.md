@@ -21,6 +21,10 @@ Go to dist folder and run:
 $ live-server --entry-file=index.js //in next console tab
 
 
+Start your Mongo DB:
+
+https://docs.mongodb.com/tutorials/install-mongodb-on-windows/
+
 Go to api folder and run:
 
 $ npm install
