@@ -16,6 +16,17 @@ export function getAllNotes(noteId) {
   }
 }
 
+export function getAllFolder(noteId) {
+  return (dispatch) => {
+      request
+        .get(Config.API_DOMAIN + 'api/getallfolders/' + localStorage.getItem('userId'))
+        .set('x-access-token', localStorage.getItem('token'))
+        .end((error, response) => {
+          dispatch(folderGetAll(response.body));
+        });
+  }
+}
+
 export function getNote(noteId) {
   return (dispatch) => {
       request
@@ -76,4 +87,8 @@ export function noteGet(note) {
   
 export function noteGetAll(allnote) {
   return {type: 'NOTE_GET_ALL', allnote: allnote};
+}
+
+export function folderGetAll(allfolder) {
+  return {type: 'FOLDER_GET_ALL', allfolder: allfolder};
 }

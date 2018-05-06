@@ -24,13 +24,13 @@ import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
 import * as EditNoteActions from '../actions/edit-note-actions';
 import TextField from 'material-ui/TextField';
 
-class UserForm extends React.Component {
+class Folder extends React.Component {
   render() {
     console.log(this.props.allnote);
     console.log(this.props);
     console.log(this.props.allfolder);
-    const {user, labels, saveUser, createNoteBool, createFolderBool, createFolder} = this.props;
-    const linksIcon = this.props.allnote.map((page, index) =>(
+    const {notesArray, user, labels, saveUser, createNoteBool, createFolderBool, createFolder} = this.props;
+    const linksIcon = notesArray.map((page, index) =>(
       <ListItem
         leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
         rightIcon={<ActionInfo />}
@@ -40,31 +40,21 @@ class UserForm extends React.Component {
       />
     ));
 
-    const folders = this.props.allfolder.map((page, index) =>(
-      <ListItem
-        leftAvatar={<Avatar icon={<FileFolder />} />}
-        rightIcon={<ActionInfo />}
-        primaryText={page.name}
-        secondaryText="Jan 20, 2014"
-        onClick={() => {appHistory.push(`/user/folder/${page.name}`)}}
-      />
-    ));
-
     return (
       <div>
-        {!(createNoteBool || createFolderBool) ? <div><div className="button-holder">
+        {!createNoteBool ? <div><div className="button-holder">
           <RaisedButton
             secondary={true}
-            label={labels.addFolder}
-            onClick={() => this.props.addFolder()}
+            label="Back"
+            onClick={() => {appHistory.push('/user')}}
             style={{
-              margin: '0 10px',
+                margin: '0 10px',
             }}
             primary={true}
           />
           <RaisedButton
             secondary={true}
-            label={labels.addNote}
+            label="Create Note"
             onClick={() => this.props.addNote()}
             style={{
               margin: '0 10px',
@@ -74,17 +64,13 @@ class UserForm extends React.Component {
         </div>
           <div>
             <List>
-              <Subheader inset={true}>Folders</Subheader>
-              {folders}
-            </List>
-            <List>
               <Subheader inset={true}>Files</Subheader>
               {linksIcon}
             </List>
-          </div></div> :
+          </div>
+        </div> :
         <div>
-          { !createFolderBool ?
-            <div>
+          <div>
             <TextField
               hintText="Enter File Name"
               onChange={(event, newValue) => this.props.updateTextField(event, newValue)}
@@ -97,21 +83,8 @@ class UserForm extends React.Component {
                 margin: '0 10px',
               }}
               primary={true}
-            /></div> :
-            <div>
-              <TextField
-                hintText="Enter Folder Name"
-                onChange={(event, newValue) => this.props.updateTextField(event, newValue)}
-              />
-              <RaisedButton
-                secondary={true}
-                label="Create"
-                onClick={() => this.props.createFolder()}
-                style={{
-                  margin: '0 10px',
-                }}
-                primary={true}
-              /></div>}
+            />
+          </div>
         </div>
           }
         
@@ -132,4 +105,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserForm);
+export default connect(mapStateToProps, mapDispatchToProps)(Folder);

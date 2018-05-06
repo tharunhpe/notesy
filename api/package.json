@@ -10,7 +10,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "author": "Krzysztof Sopa <krzysztof.sopa@xsolve.pl>",
+  "author": "Tharun Kariveda",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "0.8.6",

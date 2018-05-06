@@ -20,35 +20,23 @@ import Subheader from 'material-ui/Subheader';
 import * as EditNoteActions from '../actions/edit-note-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import UserFormContainer from './user-form-container';
+import Folder from './folder';
 
-class UserContainer extends React.Component {
+class FolderContainer extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       createNoteBool: false,
-      createFolderBool: false,
-      fileName: "",
+      notesArray: [],
     }
   }
 
   componentWillMount() {
+    const obj = this.props.allfolder.find(o => o.name === this.props.params.name);
     this.setState({ 
-      createNoteBool: false,
-      createFolderBool: false,
-      fileName: "",
+      notesArray: obj.notes,
     })
-  }
-
-  componentDidMount() {
-    this.props.actions.getUser();
-    this.props.actions2.getAllNotes(this.props.params.id);
-    this.props.actions2.getAllFolder(this.props.params.id);
-  }
-
-  updateUser() {
-    this.props.actions.updateUser(this.props.user);
   }
 
   updateTextField(event, newValue) {
@@ -59,63 +47,41 @@ class UserContainer extends React.Component {
     this.setState({ createNoteBool: true });
   }
 
-  addFolder() {
-    this.setState({ createFolderBool: true });
-  }
-
   createNote() {
+      console.log(this.state.fileName, this.props.params.name);
     if(this.state.fileName != ""){
-      this.props.actions.addNote(this.state.fileName);
+      this.props.actions.addNoteToFolder(this.state.fileName, this.props.params.name);
     }
   }
 
-  createFolder() {
-    if(this.state.fileName != ""){
-      this.props.actions.addFolder(this.state.fileName);
-    }
-    this.setState({ createFolderBool: false });
-  }
-
-  onChangeEmail(event) {
-    this.props.actions.userDataUpdated({email: event.target.value});
-  }
-
-  onChangeSurname(event) {
-    this.props.actions.userDataUpdated({surname: event.target.value});
-  }
 
   render() {
     const { user } = this.props;
 
     return (
       <MuiThemeProvider>
-        <UserFormContainer
+        <Folder
           {...this.props}
           user={user}
-          actionType={'edit'}
-          updateUser={this.updateUser.bind(this)}
+          notesArray={this.state.notesArray}
           createNote={this.createNote.bind(this)}
           updateTextField={this.updateTextField.bind(this)}
           addNote={this.addNote.bind(this)}
-          addFolder={this.addFolder.bind(this)}
-          onChangeEmail={this.onChangeEmail.bind(this)}
-          onChangeSurname={this.onChangeSurname.bind(this)}
           createNoteBool={this.state.createNoteBool}
-          createFolderBool={this.state.createFolderBool}
-          createFolder={this.createFolder.bind(this)}
         />
       </MuiThemeProvider>
     )
   }
 };
 
-UserContainer.propTypes = {
+FolderContainer.propTypes = {
   actions: React.PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    allnote: state.allnote,
+    allfolder: state.allfolder
   };
 }
 
@@ -126,4 +92,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FolderContainer);
