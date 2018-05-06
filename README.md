@@ -29,3 +29,16 @@ Go to api folder and run:
 
 $ npm install
 $ npm run dev
+
+Login Page
+[[https://github.com/tharunhpe/notesy/blob/master/images/Login.png]]
+
+List Page
+[[https://github.com/tharunhpe/notesy/blob/master/images/list%20Page.PNG]]
+
+Notes
+[[https://github.com/tharunhpe/notesy/blob/master/images/note%20page.PNG]]
+
+Share Link
+[[https://github.com/tharunhpe/notesy/blob/master/images/share.PNG]]
+
