@@ -1,41 +1,27 @@
-# sample-app
+# notesy
+Notesy is a place where you can create, edit and share all your notes.
 
-This is a sample Grommet application for reference.
+Authentication mechanism (JWT).
 
-To run this application, execute the following commands:
+Frontend application(React, Redux)
+API(NodeJS, express, MongoDB)
 
-  1. Install NPM modules
+How to run
 
-    ```
-    $ npm install (or yarn install)
-    ```
+1) Install live server: npm install -g live-server
+2) Install mongodb - on macos: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x
+3) Use correct version of node - tested on node v - 8.x
 
-  2. Start the back-end server:
+Go to front folder and run:
 
-    ```
-    $ npm run dev-server
-    ```
+$ npm install
+$ npm run build
+Go to dist folder and run:
 
-  3. Start the front-end dev server:
+$ live-server --entry-file=index.js //in next console tab
 
-    ```
-    $ npm run dev
-    ```
 
-  4. Create the app distribution to be used by a back-end server
+Go to api folder and run:
 
-    ```
-    $ NODE_ENV=production grommet pack
-    ```
-
-  5. Start the server in production mode:
-
-    ```
-    $ npm start
-    ```
-
-  6. Test and run linters:
-
-    ```
-    $ npm test
-    ```
+$ npm install
+$ npm run dev
