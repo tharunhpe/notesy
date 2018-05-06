@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # notesy
 Notesy is a place where you can create, edit and share all your notes.
 
@@ -30,46 +29,16 @@ Go to api folder and run:
 
 $ npm install
 $ npm run dev
-=======
-# sample-app
 
-This is a sample Grommet application for reference.
+Login Page
+[[https://github.com/tharunhpe/notesy/blob/master/images/Login.png]]
 
-To run this application, execute the following commands:
+List Page
+[[https://github.com/tharunhpe/notesy/blob/master/images/list%20Page.PNG]]
 
-  1. Install NPM modules
+Notes
+[[https://github.com/tharunhpe/notesy/blob/master/images/note%20page.PNG]]
 
-    ```
-    $ npm install (or yarn install)
-    ```
+Share Link
+[[https://github.com/tharunhpe/notesy/blob/master/images/share.PNG]]
 
-  2. Start the back-end server:
-
-    ```
-    $ npm run dev-server
-    ```
-
-  3. Start the front-end dev server:
-
-    ```
-    $ npm run dev
-    ```
-
-  4. Create the app distribution to be used by a back-end server
-
-    ```
-    $ NODE_ENV=production grommet pack
-    ```
-
-  5. Start the server in production mode:
-
-    ```
-    $ npm start
-    ```
-
-  6. Test and run linters:
-
-    ```
-    $ npm test
-    ```
->>>>>>> 94ac57cd0a37f4a7725514b75e6d0ae4c7553a0c
