@@ -73,6 +73,8 @@ class UserContainer extends React.Component {
     if(this.state.fileName != ""){
       this.props.actions.addFolder(this.state.fileName);
     }
+    this.props.actions2.getAllNotes(this.props.params.id);
+    this.props.actions2.getAllFolder(this.props.params.id);
     this.setState({ createFolderBool: false });
   }
 
